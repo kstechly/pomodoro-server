@@ -26,14 +26,15 @@ def get_data():
 
 @app.route("/post", methods=["POST"])
 def add_data():
-    new_data = request.get_json(force=True)
+    new_data = request.form
+    print("The data I recieved: "+str(new_data))
     with open("log.json") as f:
         data = json.load(f)
-    data.append({"Timestamp": new_data['timestamp'], "Project": new_data['proj'], "Category": new_data['cat']})
+    data.append({"Timestamp": new_data['Timestamp'], "Project": new_data['Project'], "Category": new_data['Category']})
     with open("log.json",'w') as f:
         json.dump(data, f)
     return jsonify(data)
 
 
 if __name__=="__main__":
-    app.run()
+    app.run(debug=True)
