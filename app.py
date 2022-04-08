@@ -12,8 +12,6 @@ if path.isfile('log.json') is False:
         f.write("[]")
         print("Created blank log file.")
 
-# TODO: open file and load data
-
 @app.route("/")
 def hello():
     return "Hello World"
